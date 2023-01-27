@@ -9,13 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/exo": "^4.5.11",
+    "@fontsource/exo-2": "^4.5.11",
+    "@fontsource/inter": "^4.5.15",
+    "@fontsource/lekton": "^4.5.11",
+    "@fontsource/roboto": "^4.5.8",
     "@next/font": "13.1.5",
+    "@reduxjs/toolkit": "^1.9.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "@types/styled-components": "^5.1.26",
+    "formik": "^2.2.9",
     "next": "13.1.5",
+    "prettier": "^2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.4"
+    "styled-components": "^5.3.6",
+    "typescript": "4.9.4",
+    "yup": "^0.32.11"
   }
 }
