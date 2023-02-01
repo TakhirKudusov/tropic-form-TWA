@@ -1,4 +1,4 @@
-## 👋 Welcome to the repo of Tropic Telegram Web-App!
+## 👋 Welcome to the repo of Tropic Telegram Web App!
 
 ### You must perform next steps to set up and run this project:
 1. Clone this repo to your local machine:
