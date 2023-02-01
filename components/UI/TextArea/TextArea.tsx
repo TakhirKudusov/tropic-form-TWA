@@ -1,13 +1,23 @@
 import styled from "styled-components";
-import { FC } from "react";
+import { ChangeEvent, FC, memo } from "react";
+import { FormName } from "@/common/types/types";
 
 type Props = {
   placeholder: string;
+  name: FormName;
+  value: string;
+  onChange: (e: ChangeEvent<any>) => void;
 };
-const TextArea: FC<Props> = ({ placeholder }) => {
+const TextArea: FC<Props> = ({ placeholder, name, value, onChange }) => {
   return (
     <Container>
-      <StyledInput required />
+      <StyledInput
+        required
+        name={name}
+        value={value}
+        onChange={onChange}
+        aria-required
+      />
       <StyledLabel>{placeholder}</StyledLabel>
     </Container>
   );
@@ -15,7 +25,6 @@ const TextArea: FC<Props> = ({ placeholder }) => {
 
 const Container = styled.div`
   height: 112px;
-  //overflow: hidden;
 `;
 
 const StyledLabel = styled.label`
@@ -48,7 +57,7 @@ const StyledInput = styled.textarea`
   line-height: 24px;
   letter-spacing: 0.5px;
   color: #1d1d00;
-
+  resize: none;
   &:hover {
     border-color: #00483a;
   }
@@ -68,4 +77,4 @@ const StyledInput = styled.textarea`
   }
 `;
 
-export default TextArea;
+export default memo(TextArea);

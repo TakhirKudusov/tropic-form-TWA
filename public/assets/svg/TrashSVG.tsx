@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type Props = {
   className?: string;
@@ -24,4 +24,4 @@ const TrashSVG: FC<Props> = ({ className }) => {
   );
 };
 
-export default TrashSVG;
+export default memo(TrashSVG);

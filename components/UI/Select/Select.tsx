@@ -1,21 +1,53 @@
 import styled from "styled-components";
+import { City, District, FormName } from "@/common/types/types";
+import { ChangeEvent, FC, memo } from "react";
 
-const Select = () => {
+type Props = {
+  data: (City | District)[];
+  dataType: "cities" | "districts";
+  name: FormName;
+  value: string;
+  onChange: (e: ChangeEvent<any>) => void;
+  disabled?: boolean;
+};
+const Select: FC<Props> = ({
+  data,
+  dataType,
+  name,
+  value,
+  onChange,
+  disabled = false,
+}) => {
   return (
-    <StyledSelect>
-      <StyledOption value="Тбилиси">Тбилиси</StyledOption>
-      <StyledOption value="Сухуми">Сухуми</StyledOption>
-      <StyledOption value="Батуми">Батуми</StyledOption>
-      <StyledOption value="Хинкали">Хинкали</StyledOption>
-      <StyledOption value="Хачапури">Хачапури</StyledOption>
+    <StyledSelect
+      name={name}
+      value={value}
+      onChange={onChange}
+      required
+      disabled={disabled}
+    >
+      <option value="" disabled selected>
+        {dataType === "cities" ? "Город" : "Район"}
+      </option>
+      {dataType === "cities" &&
+        (data as City[]).map((el) => (
+          <option key={el} value={el}>
+            {el}
+          </option>
+        ))}
+      {dataType === "districts" &&
+        (data as District[]).map((el) => (
+          <optgroup key={el.main} label={el.main}>
+            {el.subDistricts.map((el) => (
+              <option key={el} value={el}>
+                {el}
+              </option>
+            ))}
+          </optgroup>
+        ))}
     </StyledSelect>
   );
 };
-
-const StyledOption = styled.option`
-  height: 56px;
-  padding: 8px 24px 8px 16px;
-`;
 
 const StyledSelect = styled.select`
   font-family: "Exo 2";
@@ -40,6 +72,9 @@ const StyledSelect = styled.select`
   color: #1d1d00;
   outline: none;
   cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
 `;
 
-export default Select;
+export default memo(Select);

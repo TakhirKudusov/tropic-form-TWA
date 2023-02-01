@@ -1,5 +1,10 @@
 import { FormikHelpers, useFormik } from "formik";
-import { FORM_SCHEMA, initialValues } from "@/components/Form/constants";
+import {
+  cities,
+  districts,
+  FORM_SCHEMA,
+  initialValues,
+} from "@/components/Form/constants";
 import Select from "@/components/UI/Select/Select";
 import Input from "@/components/UI/Input/Input";
 import styled from "styled-components";
@@ -8,6 +13,7 @@ import Checkbox from "@/components/UI/Checkbox/Checkbox";
 import UploadButton from "@/components/UI/UploadButton/UploadButton";
 import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
 import TextArea from "@/components/UI/TextArea/TextArea";
+import { FormEvent } from "react";
 
 const Form = () => {
   const formik = useFormik({
@@ -30,28 +36,69 @@ const Form = () => {
   return (
     <StyledForm onReset={formik.handleReset} onSubmit={formik.handleSubmit}>
       <Title>Указать город</Title>
-      <Select />
+      <Select
+        name="city"
+        data={cities}
+        dataType="cities"
+        value={formik.values.city}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Указать район</Title>
-      <Select />
+      <Select
+        name="district"
+        data={districts}
+        dataType="districts"
+        value={formik.values.city !== "Тбилиси" ? "" : formik.values.district}
+        onChange={formik.handleChange}
+        disabled={formik.values.city !== "Тбилиси"}
+      />
       <Divider />
       <Title>Указать цену</Title>
-      <Input placeholder="Цена" />
+      <Input
+        name="cost"
+        placeholder="Цена"
+        value={formik.values.cost}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Указать площадь</Title>
-      <Input placeholder="Площадь" />
+      <Input
+        name="square"
+        placeholder="Площадь"
+        value={formik.values.square}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Указать кол-во комнат</Title>
-      <Input placeholder="Количество комнат" />
+      <Input
+        name="roomsQuantity"
+        placeholder="Количество комнат"
+        value={formik.values.roomsQuantity}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Можно с животными</Title>
-      <Checkbox />
+      <Checkbox
+        name="allowingPets"
+        value={formik.values.allowingPets}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Добавить описание</Title>
-      <TextArea placeholder="Описание" />
+      <TextArea
+        name="description"
+        placeholder="Описание"
+        value={formik.values.description}
+        onChange={formik.handleChange}
+      />
       <Divider />
       <Title>Загрузите фото</Title>
-      <UploadButton />
+      <UploadButton
+        name="photos"
+        value={formik.values.photos}
+        onChange={formik.handleChange}
+      />
       <MenuButtons />
     </StyledForm>
   );

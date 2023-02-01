@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type Props = {
   className?: string;
@@ -22,4 +22,4 @@ const UploadSVG: FC<Props> = ({ className }) => {
   );
 };
 
-export default UploadSVG;
+export default memo(UploadSVG);

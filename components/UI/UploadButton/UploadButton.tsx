@@ -1,9 +1,24 @@
 import styled from "styled-components";
 import UploadSVG from "@/public/assets/svg/UploadSVG";
-const UploadButton = () => {
+import { FormName } from "@/common/types/types";
+import { ChangeEvent, FC, memo } from "react";
+
+type Props = {
+  name: FormName;
+  value: any;
+  onChange: (e: ChangeEvent<any>) => void;
+};
+const UploadButton: FC<Props> = ({ name, value, onChange }) => {
   return (
     <Wrapper>
-      <input type="file" id="upload_btn" hidden />
+      <input
+        type="file"
+        id="upload_btn"
+        hidden
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
       <Label htmlFor="upload_btn">
         <UploadIcon /> Выберите фото
       </Label>
@@ -59,4 +74,4 @@ const Wrapper = styled.div`
   align-items: center;
   column-gap: 11px;
 `;
-export default UploadButton;
+export default memo(UploadButton);

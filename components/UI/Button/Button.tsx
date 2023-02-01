@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 type ButtonType = "primary" | "outlined";
@@ -6,10 +6,15 @@ type ButtonType = "primary" | "outlined";
 type Props = {
   btnType: ButtonType;
   children: ReactNode;
+  type: "button" | "submit" | "reset";
 };
 
-const Button: FC<Props> = ({ btnType, children }) => {
-  return <StyledBtn btnType={btnType}>{children}</StyledBtn>;
+const Button: FC<Props> = ({ btnType, children, type }) => {
+  return (
+    <StyledBtn type={type} btnType={btnType}>
+      {children}
+    </StyledBtn>
+  );
 };
 
 const StyledBtn = styled.button<{ btnType: ButtonType }>`
@@ -44,4 +49,4 @@ const StyledBtn = styled.button<{ btnType: ButtonType }>`
   }}
 `;
 
-export default Button;
+export default memo(Button);

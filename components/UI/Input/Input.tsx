@@ -1,13 +1,23 @@
 import styled from "styled-components";
-import { FC } from "react";
+import { ChangeEvent, FC, memo } from "react";
+import { FormName } from "@/common/types/types";
 
 type Props = {
   placeholder: string;
+  name: FormName;
+  value: string;
+  onChange: (e: ChangeEvent<any>) => void;
 };
-const Input: FC<Props> = ({ placeholder }) => {
+const Input: FC<Props> = ({ placeholder, name, value, onChange }) => {
   return (
     <Container>
-      <StyledInput type="text" required />
+      <StyledInput
+        type="text"
+        required
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
       <StyledLabel>{placeholder}</StyledLabel>
     </Container>
   );
@@ -67,4 +77,4 @@ const StyledInput = styled.input`
   }
 `;
 
-export default Input;
+export default memo(Input);

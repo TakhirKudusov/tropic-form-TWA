@@ -7,11 +7,11 @@ const MenuButtons = () => {
   return (
     <Wrapper>
       <Container>
-        <Button btnType="primary">
+        <Button type="submit" btnType="primary">
           <DoneIcon />
           Отправить
         </Button>
-        <Button btnType="outlined">
+        <Button type="reset" btnType="outlined">
           <TrashIcon />
           Стереть
         </Button>

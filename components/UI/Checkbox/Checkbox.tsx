@@ -1,9 +1,21 @@
 import styled from "styled-components";
+import { FormName } from "@/common/types/types";
+import { ChangeEvent, FC, memo } from "react";
 
-const Checkbox = () => {
+type Props = {
+  name: FormName;
+  value: string;
+  onChange: (e: ChangeEvent<any>) => void;
+};
+const Checkbox: FC<Props> = ({ name, value, onChange }) => {
   return (
     <Container>
-      <StyledRadioBtn />
+      <StyledRadioBtn
+        type="checkbox"
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
       <Text>Да</Text>
     </Container>
   );
@@ -24,13 +36,28 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const StyledRadioBtn = styled.div`
+const StyledRadioBtn = styled.input`
   display: flex;
   width: 18px;
   height: 18px;
   border-radius: 2px;
   border: 2px solid #006b56;
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  place-content: center;
+  &::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    transform: scale(0);
+    box-shadow: inset 8px 8px #006b56;
+  }
+  &:checked::before {
+    transform: scale(1);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
 `;
 
-export default Checkbox;
+export default memo(Checkbox);

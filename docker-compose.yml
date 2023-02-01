@@ -1,0 +1,8 @@
+version: "16"
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+  node:
+    image: "node:16-alpine"
