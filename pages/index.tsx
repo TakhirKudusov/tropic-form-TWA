@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import Form from "@/components/Form/Form";
+import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
 const Home = () => {
   return (
     <>
@@ -33,7 +34,7 @@ const Home = () => {
 const DescriptionText = styled.p`
   font-size: 14px;
   line-height: 20px;
-  width: 400px;
+  max-width: 400px;
 `;
 
 const HeaderText = styled.h1`
@@ -54,12 +55,11 @@ const Header = styled.div`
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
   padding: 36px 24px;
   background-image: linear-gradient(135deg, #fffbe6, rgba(0, 107, 86, 0.14));
   background-size: 100% 160px;
   background-repeat: no-repeat;
-  row-gap: 32px;
+  row-gap: 42px;
 `;
 
 const Main = styled.main`

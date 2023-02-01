@@ -8,6 +8,7 @@ specifiers:
   '@fontsource/roboto': ^4.5.8
   '@next/font': 13.1.5
   '@reduxjs/toolkit': ^1.9.1
+  '@styled-icons/boxicons-regular': ^10.47.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -29,6 +30,7 @@ dependencies:
   '@fontsource/roboto': 4.5.8
   '@next/font': 13.1.5
   '@reduxjs/toolkit': 1.9.1_react@18.2.0
+  '@styled-icons/boxicons-regular': 10.47.0_56nicwxcbpehznvjhlpvpy75bu
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -380,6 +382,29 @@ packages:
       redux: 4.2.0
       redux-thunk: 2.4.2_redux@4.2.0
       reselect: 4.1.7
+    dev: false
+
+  /@styled-icons/boxicons-regular/10.47.0_56nicwxcbpehznvjhlpvpy75bu:
+    resolution: {integrity: sha512-z8KczDp4VArXvOn8i2j66Xs4oX9oiiJEhMoHydY3uC9kdtImcxhZ/xHPrgTJLkbK6f5ikwB4CKVnSqQGzzAJNw==}
+    peerDependencies:
+      react: '*'
+      styled-components: '*'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@styled-icons/styled-icon': 10.7.0_56nicwxcbpehznvjhlpvpy75bu
+      react: 18.2.0
+      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+    dev: false
+
+  /@styled-icons/styled-icon/10.7.0_56nicwxcbpehznvjhlpvpy75bu:
+    resolution: {integrity: sha512-SCrhCfRyoY8DY7gUkpz+B0RqUg/n1Zaqrr2+YKmK/AyeNfCcoHuP4R9N4H0p/NA1l7PTU10ZkAWSLi68phnAjw==}
+    peerDependencies:
+      react: '*'
+      styled-components: '>=4.1.0 <6'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      react: 18.2.0
+      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /@swc/helpers/0.4.14:

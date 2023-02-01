@@ -4,17 +4,18 @@ import { FC } from "react";
 type Props = {
   placeholder: string;
 };
-const Input: FC<Props> = ({ placeholder }) => {
+const TextArea: FC<Props> = ({ placeholder }) => {
   return (
     <Container>
-      <StyledInput type="text" required />
+      <StyledInput required />
       <StyledLabel>{placeholder}</StyledLabel>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: 56px;
+  height: 112px;
+  //overflow: hidden;
 `;
 
 const StyledLabel = styled.label`
@@ -25,19 +26,19 @@ const StyledLabel = styled.label`
   align-items: center;
   color: #006b56;
   position: relative;
-  bottom: 40px;
+  bottom: 96px;
   left: 16px;
   pointer-events: none;
   transition: 0.1s all linear;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   transition: 0.1s all linear;
   display: flex;
   padding: 12px 16px 16px;
   align-items: center;
   width: 100%;
-  height: 56px;
+  height: 112px;
   border-radius: 4px;
   border: 2px solid #006b56;
   outline: none;
@@ -60,11 +61,11 @@ const StyledInput = styled.input`
   &:not(:focus):valid ~ label {
     font-size: 13px;
     line-height: 20px;
-    bottom: 68px;
+    bottom: 126px;
     background-color: white;
     left: 16px;
     padding: 0 5px;
   }
 `;
 
-export default Input;
+export default TextArea;
