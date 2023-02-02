@@ -1,41 +1,41 @@
 import * as yup from "yup";
-import { City, District } from "@/common/types/types";
+import { City, District, MyFormData } from "@/common/types/types";
 
-const initialValues = {
+const initialValues: MyFormData = {
   city: "",
   cost: "",
   square: "",
   roomsQuantity: "",
   district: "",
-  allowingPets: "false",
+  allowingPets: false,
   description: "",
-  photos: "",
+  photos: [],
 };
 
 const FORM_SCHEMA = yup.object().shape({
-  city: yup.string().required("Это обязательное поле!"),
-  district: yup.string().required("Это обязательное поле!"),
+  city: yup.string().required(""),
+  district: yup.string(),
   cost: yup
     .string()
-    .required("Это обязательное поле!")
+    .required("")
     .matches(/^\d+$/, "Пожалуйста, введите число!")
     .max(10, "Введите до 10 цифр!"),
   square: yup
     .string()
-    .required("Это обязательное поле!")
+    .required("")
     .matches(/^\d+$/, "Пожалуйста, введите число!")
     .max(10, "Введите до 10 цифр!"),
   roomsQuantity: yup
     .string()
-    .required("Это обязательное поле!")
+    .required("")
     .matches(/^\d+$/, "Пожалуйста, введите число!")
     .max(10, "Введите до 10 цифр!"),
-  allowingPets: yup.string().required("Это обязательное поле!"),
+  allowingPets: yup.boolean().required(""),
   description: yup
     .string()
-    .required("Это обязательное поле!")
-    .max(500, "Введите до 500 символов!"),
-  photos: yup.mixed(),
+    .required("")
+    .max(1_500, "Введите до 1 500 символов!"),
+  photos: yup.array(),
 });
 
 const cities: City[] = ["Тбилиси", "Батуми", "Кутаиси"];

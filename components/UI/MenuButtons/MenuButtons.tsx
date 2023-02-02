@@ -2,12 +2,16 @@ import styled from "styled-components";
 import Button from "@/components/UI/Button/Button";
 import DoneSVG from "@/public/assets/svg/DoneSVG";
 import TrashSVG from "@/public/assets/svg/TrashSVG";
+import { FC, memo } from "react";
 
-const MenuButtons = () => {
+type Props = {
+  disabled?: boolean;
+};
+const MenuButtons: FC<Props> = ({ disabled = false }) => {
   return (
     <Wrapper>
       <Container>
-        <Button type="submit" btnType="primary">
+        <Button type="submit" btnType="primary" disabled={disabled}>
           <DoneIcon />
           Отправить
         </Button>
@@ -54,4 +58,4 @@ const Wrapper = styled.div`
   background-color: white;
   padding: 10px;
 `;
-export default MenuButtons;
+export default memo(MenuButtons);

@@ -20,8 +20,8 @@ const Home = () => {
           <Header>
             <HeaderText>Tropic Bot</HeaderText>
             <DescriptionText>
-              Fill out the form as&nbsp;you wish and click submit. We&nbsp;will
-              definitely contact you!
+              Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
+              свяжемся с&nbsp;Вами!
             </DescriptionText>
           </Header>
           <Form />

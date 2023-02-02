@@ -4,7 +4,7 @@ import { ChangeEvent, FC, memo } from "react";
 
 type Props = {
   name: FormName;
-  value: string;
+  value: boolean;
   onChange: (e: ChangeEvent<any>) => void;
 };
 const Checkbox: FC<Props> = ({ name, value, onChange }) => {
@@ -13,7 +13,7 @@ const Checkbox: FC<Props> = ({ name, value, onChange }) => {
       <StyledRadioBtn
         type="checkbox"
         name={name}
-        value={value}
+        checked={value}
         onChange={onChange}
       />
       <Text>Да</Text>
@@ -51,7 +51,7 @@ const StyledRadioBtn = styled.input`
     width: 12px;
     height: 12px;
     transform: scale(0);
-    box-shadow: inset 8px 8px #006b56;
+    box-shadow: inset 12px 12px #006b56;
   }
   &:checked::before {
     transform: scale(1);

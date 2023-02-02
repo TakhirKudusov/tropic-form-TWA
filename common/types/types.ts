@@ -15,4 +15,10 @@ type FormName =
   | "description"
   | "photos";
 
-export type { City, District, FormName };
+type MyFormData = Omit<Record<FormName, string>, "photos" | "allowingPets"> &
+  Record<"photos", File[]> &
+  Record<"allowingPets", boolean>;
+
+type WindowTg = Window & typeof globalThis & { Telegram: any };
+
+export type { City, District, FormName, MyFormData, WindowTg };

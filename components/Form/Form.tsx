@@ -13,28 +13,49 @@ import Checkbox from "@/components/UI/Checkbox/Checkbox";
 import UploadButton from "@/components/UI/UploadButton/UploadButton";
 import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
 import TextArea from "@/components/UI/TextArea/TextArea";
-import { FormEvent } from "react";
+import { createRef, RefObject, useEffect, useRef, useState } from "react";
+import { handleSubmitForm } from "@/components/Form/helpers";
+import { MyFormData } from "@/common/types/types";
 
 const Form = () => {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  const uploadRef = useRef<HTMLInputElement>(null);
+
   const formik = useFormik({
     initialValues,
     validationSchema: FORM_SCHEMA,
     onReset<Values>(
-      values: Values,
-      formikHelpers: FormikHelpers<Values>
-    ): void {
-      console.log(values);
-    },
-    onSubmit<Values>(
-      values: Values,
+      values: MyFormData,
       formikHelpers: FormikHelpers<Values>
     ): void | Promise<any> {
-      console.log(values);
+      if (uploadRef?.current) {
+        uploadRef.current.value = "";
+      }
+    },
+    onSubmit<Values>(
+      values: MyFormData,
+      formikHelpers: FormikHelpers<Values>
+    ): void | Promise<any> {
+      handleSubmitForm(values);
     },
   });
 
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+    }
+    if (formik.values.city !== "Тбилиси" && isMounted) {
+      formik.setFieldValue("district", "");
+    }
+  }, [formik.values.city]);
+
   return (
-    <StyledForm onReset={formik.handleReset} onSubmit={formik.handleSubmit}>
+    <StyledForm
+      onReset={formik.handleReset}
+      onSubmit={formik.handleSubmit}
+      encType="multipart/form-data"
+    >
       <Title>Указать город</Title>
       <Select
         name="city"
@@ -42,6 +63,7 @@ const Form = () => {
         dataType="cities"
         value={formik.values.city}
         onChange={formik.handleChange}
+        required={true}
       />
       <Divider />
       <Title>Указать район</Title>
@@ -49,18 +71,21 @@ const Form = () => {
         name="district"
         data={districts}
         dataType="districts"
-        value={formik.values.city !== "Тбилиси" ? "" : formik.values.district}
+        value={formik.values.district}
         onChange={formik.handleChange}
         disabled={formik.values.city !== "Тбилиси"}
       />
       <Divider />
-      <Title>Указать цену</Title>
+      <Title>Указать цену, $</Title>
       <Input
         name="cost"
-        placeholder="Цена"
+        placeholder="Цена, $"
         value={formik.values.cost}
         onChange={formik.handleChange}
       />
+      {formik.errors.cost ? (
+        <ErrorMessage>{formik.errors.cost}</ErrorMessage>
+      ) : null}
       <Divider />
       <Title>Указать площадь</Title>
       <Input
@@ -69,6 +94,9 @@ const Form = () => {
         value={formik.values.square}
         onChange={formik.handleChange}
       />
+      {formik.errors.square ? (
+        <ErrorMessage>{formik.errors.square}</ErrorMessage>
+      ) : null}
       <Divider />
       <Title>Указать кол-во комнат</Title>
       <Input
@@ -77,6 +105,9 @@ const Form = () => {
         value={formik.values.roomsQuantity}
         onChange={formik.handleChange}
       />
+      {formik.errors.roomsQuantity ? (
+        <ErrorMessage>{formik.errors.roomsQuantity}</ErrorMessage>
+      ) : null}
       <Divider />
       <Title>Можно с животными</Title>
       <Checkbox
@@ -92,17 +123,38 @@ const Form = () => {
         value={formik.values.description}
         onChange={formik.handleChange}
       />
+      {formik.errors.description ? (
+        <ErrorMessage>{formik.errors.description}</ErrorMessage>
+      ) : null}
       <Divider />
       <Title>Загрузите фото</Title>
       <UploadButton
+        ref={uploadRef}
         name="photos"
         value={formik.values.photos}
-        onChange={formik.handleChange}
+        changeHandler={formik.setFieldValue}
+        disabled={formik.values.photos.length >= 10}
       />
+      <PhotoCounterText>
+        Добавлено фото: {formik.values.photos.length}
+      </PhotoCounterText>
       <MenuButtons />
     </StyledForm>
   );
 };
+
+const PhotoCounterText = styled.p`
+  font-size: 14px;
+  line-height: 20px;
+  color: #4b635b;
+  font-weight: 500;
+`;
+
+const ErrorMessage = styled.p`
+  font-size: 14px;
+  line-height: 20px;
+  color: #ba1a1a;
+`;
 
 const Title = styled.h3`
   font-weight: 700;

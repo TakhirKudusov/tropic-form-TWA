@@ -9,6 +9,7 @@ type Props = {
   value: string;
   onChange: (e: ChangeEvent<any>) => void;
   disabled?: boolean;
+  required?: boolean;
 };
 const Select: FC<Props> = ({
   data,
@@ -17,13 +18,14 @@ const Select: FC<Props> = ({
   value,
   onChange,
   disabled = false,
+  required = false,
 }) => {
   return (
     <StyledSelect
       name={name}
       value={value}
       onChange={onChange}
-      required
+      required={required}
       disabled={disabled}
     >
       <option value="" disabled selected>
@@ -74,6 +76,7 @@ const StyledSelect = styled.select`
   cursor: pointer;
   &:disabled {
     cursor: default;
+    opacity: 0.7;
   }
 `;
 
