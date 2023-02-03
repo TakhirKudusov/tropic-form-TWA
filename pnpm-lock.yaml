@@ -9,6 +9,7 @@ specifiers:
   '@next/font': 13.1.5
   '@reduxjs/toolkit': ^1.9.1
   '@styled-icons/boxicons-regular': ^10.47.0
+  '@styled-icons/fluentui-system-filled': ^10.47.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -31,6 +32,7 @@ dependencies:
   '@next/font': 13.1.5
   '@reduxjs/toolkit': 1.9.1_react@18.2.0
   '@styled-icons/boxicons-regular': 10.47.0_56nicwxcbpehznvjhlpvpy75bu
+  '@styled-icons/fluentui-system-filled': 10.47.0_56nicwxcbpehznvjhlpvpy75bu
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -386,6 +388,18 @@ packages:
 
   /@styled-icons/boxicons-regular/10.47.0_56nicwxcbpehznvjhlpvpy75bu:
     resolution: {integrity: sha512-z8KczDp4VArXvOn8i2j66Xs4oX9oiiJEhMoHydY3uC9kdtImcxhZ/xHPrgTJLkbK6f5ikwB4CKVnSqQGzzAJNw==}
+    peerDependencies:
+      react: '*'
+      styled-components: '*'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@styled-icons/styled-icon': 10.7.0_56nicwxcbpehznvjhlpvpy75bu
+      react: 18.2.0
+      styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+    dev: false
+
+  /@styled-icons/fluentui-system-filled/10.47.0_56nicwxcbpehznvjhlpvpy75bu:
+    resolution: {integrity: sha512-jAO8bs9SY/5Xu2vxg5sJmnD5YA966G2m2qU4ezlDbLDIXSaX/1qUBUivBFSWCDn4q5rslegzD1rhc9FncgPbSw==}
     peerDependencies:
       react: '*'
       styled-components: '*'

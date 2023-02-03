@@ -1,7 +1,11 @@
 import Head from "next/head";
-import styled from "styled-components";
-import Form from "@/components/Form/Form";
-import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
+import Spinner from "@/components/UI/Spinner/Spinner";
+import dynamic from "next/dynamic";
+
+const Main = dynamic(() => import("../components/Main"), {
+  loading: () => <Spinner />,
+  ssr: false,
+});
 const Home = () => {
   return (
     <>
@@ -15,57 +19,9 @@ const Home = () => {
           src="https://telegram.org/js/telegram-web-app.js"
         ></script>
       </Head>
-      <Main>
-        <FormWrapper>
-          <Header>
-            <HeaderText>Tropic Bot</HeaderText>
-            <DescriptionText>
-              Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
-              свяжемся с&nbsp;Вами!
-            </DescriptionText>
-          </Header>
-          <Form />
-        </FormWrapper>
-      </Main>
+      <Main />
     </>
   );
 };
-
-const DescriptionText = styled.p`
-  font-size: 14px;
-  line-height: 20px;
-  max-width: 400px;
-`;
-
-const HeaderText = styled.h1`
-  font-weight: 400;
-  font-size: 42px;
-  line-height: 48px;
-  text-align: center;
-`;
-
-const Header = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  row-gap: 14px;
-`;
-
-const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 36px 24px;
-  background-image: linear-gradient(135deg, #fffbe6, rgba(0, 107, 86, 0.14));
-  background-size: 100% 160px;
-  background-repeat: no-repeat;
-  row-gap: 42px;
-`;
-
-const Main = styled.main`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
 
 export default Home;
