@@ -1,5 +1,6 @@
 import Form from "@/components/Form/Form";
 import styled from "styled-components";
+import { WindowTg } from "@/common/types/types";
 
 const Main = () => {
   return (
@@ -9,7 +10,7 @@ const Main = () => {
           <HeaderText>Tropic Bot</HeaderText>
           <DescriptionText>
             Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
-            свяжемся с&nbsp;Вами!
+            свяжемся с&nbsp;Вами!{" "}
           </DescriptionText>
         </Header>
         <Form />
@@ -53,6 +54,7 @@ const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   width: 100%;
+  background-color: white;
 `;
 
 export default Main;

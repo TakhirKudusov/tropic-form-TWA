@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-color: white;
 `;
 
 const SpinnerIcon = styled(SpinnerIos)`
