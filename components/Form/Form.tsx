@@ -13,7 +13,7 @@ import Checkbox from "@/components/UI/Checkbox/Checkbox";
 import UploadButton from "@/components/UI/UploadButton/UploadButton";
 import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
 import TextArea from "@/components/UI/TextArea/TextArea";
-import { createRef, RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { handleSubmitForm } from "@/components/Form/helpers";
 import { MyFormData } from "@/common/types/types";
 

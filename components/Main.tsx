@@ -10,7 +10,7 @@ const Main = () => {
           <HeaderText>Tropic Bot</HeaderText>
           <DescriptionText>
             Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
-            свяжемся с&nbsp;Вами!{" "}
+            свяжемся с&nbsp;Вами!
           </DescriptionText>
         </Header>
         <Form />

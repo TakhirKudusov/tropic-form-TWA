@@ -30,8 +30,8 @@ const UploadButton = forwardRef(
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const handleChangeUpload = (e: ChangeEvent<HTMLInputElement>) => {
-      if (value.length < 10 && e?.currentTarget?.files?.[0]) {
-        const newValue = [...value, e?.currentTarget?.files?.[0]];
+      if (value.length < 10 && e?.currentTarget?.files) {
+        const newValue = [...value, ...Array.from(e?.currentTarget?.files)];
         changeHandler("photos", newValue);
       }
     };
@@ -55,6 +55,7 @@ const UploadButton = forwardRef(
           value={value.image}
           onChange={handleChangeUpload}
           disabled={disabled}
+          multiple
         />
         <Label htmlFor="upload_btn" disabled={disabled}>
           <UploadIcon /> Выберите фото
@@ -134,4 +135,5 @@ const Wrapper = styled.div`
   align-items: center;
   column-gap: 11px;
 `;
+
 export default memo(UploadButton);
