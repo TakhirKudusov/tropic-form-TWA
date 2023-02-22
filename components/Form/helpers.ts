@@ -21,6 +21,8 @@ const handleSubmitForm = async (data: MyFormData) => {
           user_id:
             (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user?.id ??
             "error",
+          uniq_id:
+            Date.now().toString(36) + Math.random().toString(36).substr(2),
         },
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
@@ -34,6 +36,8 @@ const handleSubmitForm = async (data: MyFormData) => {
             user_id:
               (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user
                 ?.id ?? "error",
+            uniq_id:
+              Date.now().toString(36) + Math.random().toString(36).substr(2),
           },
           headers: { "Content-Type": "multipart/form-data" },
         });
