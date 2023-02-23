@@ -1,7 +1,12 @@
 import { MyFormData, WindowTg } from "@/common/types/types";
 import axios from "axios";
 
-const handleSubmitForm = async (data: MyFormData) => {
+function generateUniqueId(prefix: string, suffix: string) {
+  const randomNum = Math.random().toString(36).substr(2, 9);
+  return `${prefix || ""}${randomNum}${suffix || ""}`;
+}
+
+const handleSubmitForm = async (data: MyFormData, uniqueId: string) => {
   if (typeof (window as WindowTg)?.Telegram !== "undefined") {
     try {
       const { photos, ...newData } = data;
@@ -21,8 +26,7 @@ const handleSubmitForm = async (data: MyFormData) => {
           user_id:
             (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user?.id ??
             "error",
-          uniq_id:
-            Date.now().toString(36) + Math.random().toString(36).substr(2),
+          uniq_id: uniqueId,
         },
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
@@ -36,8 +40,7 @@ const handleSubmitForm = async (data: MyFormData) => {
             user_id:
               (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user
                 ?.id ?? "error",
-            uniq_id:
-              Date.now().toString(36) + Math.random().toString(36).substr(2),
+            uniq_id: uniqueId,
           },
           headers: { "Content-Type": "multipart/form-data" },
         });
@@ -49,4 +52,4 @@ const handleSubmitForm = async (data: MyFormData) => {
   }
 };
 
-export { handleSubmitForm };
+export { handleSubmitForm, generateUniqueId };

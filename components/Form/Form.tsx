@@ -14,7 +14,7 @@ import UploadButton from "@/components/UI/UploadButton/UploadButton";
 import MenuButtons from "@/components/UI/MenuButtons/MenuButtons";
 import TextArea from "@/components/UI/TextArea/TextArea";
 import { useEffect, useRef, useState } from "react";
-import { handleSubmitForm } from "@/components/Form/helpers";
+import { generateUniqueId, handleSubmitForm } from "@/components/Form/helpers";
 import { MyFormData } from "@/common/types/types";
 
 const Form = () => {
@@ -37,7 +37,8 @@ const Form = () => {
       values: MyFormData,
       formikHelpers: FormikHelpers<Values>
     ): void | Promise<any> {
-      handleSubmitForm(values);
+      const uniqueId = generateUniqueId("user-", "-id");
+      handleSubmitForm(values, uniqueId);
     },
   });
 
