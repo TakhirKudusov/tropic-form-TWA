@@ -35,20 +35,40 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
       for (let i = 0; i < photos.length; i++) {
         let photo: Blob | Blob[] | File | BlobPart =  photos[i];
 
-        try {
-          if (photos[i].type === "image/heic" || photos[i].type === "image/heif") {
-            photo = await heic2any({
-              blob: photos[i],
-              toType: "image/jpeg",
-              quality: 1,
-            })
+        // try {
+        //   if (photos[i].type === "image/heic" || photos[i].type === "image/heif") {
+        //     photo = await heic2any({
+        //       blob: photos[i],
+        //       toType: "image/jpg",
+        //       quality: 0.5,
+        //     })
+        //
+        //     photo = new File([(photo as BlobPart)], `${uniqueId}_${i}.jpg`, { type: "image/jpg" })
+        //
+        //   }
+        // } catch (error) {
+        //     console.error(error)
+        // }
 
-            photo = new File([(photo as BlobPart)], `${uniqueId}_${i}.jpg`, { type: "image/jpeg" })
 
-          }
-        } catch (error) {
-            console.error(error)
+        //if HEIC file
+        if(photos[i] && photos[i].name.includes(".HEIC") || photos[i].name.includes(".heic")) {
+          // get image as blob url
+          const blobURL = URL.createObjectURL(photos[i]);
+
+          // convert "fetch" the new blob url
+          const blobRes = await fetch(blobURL)
+
+          // convert response to blob
+          const blob = await blobRes.blob()
+
+          // convert to PNG - response is blob
+          const conversionResult = await heic2any({ blob, toType: "image/jpeg", quality: 0.5 })
+
+            // convert blob to file
+          photo = new File([(conversionResult as Blob)], `${uniqueId}_${i}.jpeg`, { type: "image/jpeg" })
         }
+
 
         console.log(photo)
 
@@ -65,11 +85,12 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
           headers: { "Content-Type": "multipart/form-data" },
         });
       }
+      (window as WindowTg)?.Telegram.WebApp.close();
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
-    (window as WindowTg)?.Telegram.WebApp.close();
+
   }
 };
 
