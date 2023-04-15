@@ -2,6 +2,7 @@ import { MyFormData, WindowTg } from "@/common/types/types";
 import axios from "axios";
 import heic2any from "heic2any";
 import {Dispatch, SetStateAction} from "react";
+import {toast} from "react-toastify";
 
 
 function generateUniqueId(prefix: string, suffix: string) {
@@ -33,7 +34,6 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
       });
 
       for (let i = 0; i < photos.length; i++) {
-        let photo: Blob | Blob[] | File | BlobPart =  photos[i];
 
         // try {
         //   if (photos[i].type === "image/heic" || photos[i].type === "image/heif") {
@@ -50,36 +50,12 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
         //     console.error(error)
         // }
 
-
-        // //if HEIC file
-        // if(photos[i] && photos[i].name.includes(".HEIC") || photos[i].name.includes(".heic")) {
-        //   // get image as blob url
-        //   const blobURL = URL.createObjectURL(photos[i]);
-        //
-        //   // convert "fetch" the new blob url
-        //   const blobRes = await fetch(blobURL)
-        //
-        //   // convert response to blob
-        //   const blob = await blobRes.blob()
-        //
-        //   // convert to PNG - response is blob
-        //   const conversionResult = await heic2any({ blob, toType: "image/jpeg", quality: 0.5 })
-        //
-        //     // convert blob to file
-        //   photo = new File([(conversionResult as Blob)], `${uniqueId}_${i}.jpeg`, { type: "image/jpeg" })
-        // }
-
-
-        console.log(photo)
-
         await axios({
           method: "post",
           url: "/api/files",
           data: {
-            my_files: photo,
-            user_id:
-              (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user
-                ?.id ?? "error",
+            my_files: photos[i] ?? "error",
+            user_id:uniqueId,
             uniq_id: uniqueId,
           },
           headers: { "Content-Type": "multipart/form-data" },
@@ -88,9 +64,9 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
       (window as WindowTg)?.Telegram.WebApp.close();
     } catch (error) {
       console.error(error);
+      toast.error("Ошибка отправки данных: " + error);
     }
     setLoading(false);
-
   }
 };
 

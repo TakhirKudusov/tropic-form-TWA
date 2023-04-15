@@ -1,21 +1,37 @@
 import Form from "@/components/Form/Form";
 import styled from "styled-components";
 import { WindowTg } from "@/common/types/types";
+import {ToastContainer} from "react-toastify";
 
 const Main = () => {
   return (
-    <StyledMain>
-      <FormWrapper>
-        <Header>
-          <HeaderText>Tropic Bot</HeaderText>
-          <DescriptionText>
-            Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
-            свяжемся с&nbsp;Вами!
-          </DescriptionText>
-        </Header>
-        <Form />
-      </FormWrapper>
-    </StyledMain>
+      <>
+        <StyledMain>
+          <FormWrapper>
+            <Header>
+              <HeaderText>Tropic Bot</HeaderText>
+              <DescriptionText>
+                Заполните форму актуальными данными и&nbsp;мы&nbsp;обязательно
+                свяжемся с&nbsp;Вами!
+              </DescriptionText>
+            </Header>
+            <Form />
+          </FormWrapper>
+        </StyledMain>
+        <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+        />
+      </>
+
   );
 };
 

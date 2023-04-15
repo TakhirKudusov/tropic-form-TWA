@@ -5,6 +5,8 @@ import "@fontsource/inter";
 import "@fontsource/lekton";
 import "@fontsource/exo";
 import "@fontsource/exo-2";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
