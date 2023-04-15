@@ -51,23 +51,23 @@ const handleSubmitForm = async (data: MyFormData, uniqueId: string, setLoading: 
         // }
 
 
-        //if HEIC file
-        if(photos[i] && photos[i].name.includes(".HEIC") || photos[i].name.includes(".heic")) {
-          // get image as blob url
-          const blobURL = URL.createObjectURL(photos[i]);
-
-          // convert "fetch" the new blob url
-          const blobRes = await fetch(blobURL)
-
-          // convert response to blob
-          const blob = await blobRes.blob()
-
-          // convert to PNG - response is blob
-          const conversionResult = await heic2any({ blob, toType: "image/jpeg", quality: 0.5 })
-
-            // convert blob to file
-          photo = new File([(conversionResult as Blob)], `${uniqueId}_${i}.jpeg`, { type: "image/jpeg" })
-        }
+        // //if HEIC file
+        // if(photos[i] && photos[i].name.includes(".HEIC") || photos[i].name.includes(".heic")) {
+        //   // get image as blob url
+        //   const blobURL = URL.createObjectURL(photos[i]);
+        //
+        //   // convert "fetch" the new blob url
+        //   const blobRes = await fetch(blobURL)
+        //
+        //   // convert response to blob
+        //   const blob = await blobRes.blob()
+        //
+        //   // convert to PNG - response is blob
+        //   const conversionResult = await heic2any({ blob, toType: "image/jpeg", quality: 0.5 })
+        //
+        //     // convert blob to file
+        //   photo = new File([(conversionResult as Blob)], `${uniqueId}_${i}.jpeg`, { type: "image/jpeg" })
+        // }
 
 
         console.log(photo)
