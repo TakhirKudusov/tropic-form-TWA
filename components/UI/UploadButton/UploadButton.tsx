@@ -30,6 +30,9 @@ const UploadButton = forwardRef(
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const handleChangeUpload = (e: ChangeEvent<HTMLInputElement>) => {
+
+
+
       if (value.length < 10 && e?.currentTarget?.files) {
         const newValue = [...value, ...Array.from(e?.currentTarget?.files)];
         changeHandler("photos", newValue);

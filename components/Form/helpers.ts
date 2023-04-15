@@ -1,5 +1,6 @@
 import { MyFormData, WindowTg } from "@/common/types/types";
 import axios from "axios";
+import heic2any from "heic2any";
 
 function generateUniqueId(prefix: string, suffix: string) {
   const randomNum = Math.random().toString(36).substr(2, 9);
@@ -17,8 +18,6 @@ const
         newData.district = "null";
       }
 
-      console.log(newData);
-
       await axios({
         method: "post",
         url: "/api/data",
@@ -33,11 +32,21 @@ const
       });
 
       for (let i = 0; i < photos.length; i++) {
+        let photo: Blob | Blob[] =  photos[i];
+        if (photos[i].type === "image/heic" || photos[i].type === "image/heif") {
+          photo = await heic2any({
+            blob: photos[i],
+            toType: "image/jpeg",
+            quality: 1,
+          })
+        }
+        console.log(photo)
+
         await axios({
           method: "post",
           url: "/api/files",
           data: {
-            my_files: photos[i],
+            my_files: photo,
             user_id:
               (window as WindowTg)?.Telegram?.WebApp?.initDataUnsafe?.user
                 ?.id ?? "error",

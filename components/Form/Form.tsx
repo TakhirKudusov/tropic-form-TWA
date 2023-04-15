@@ -18,6 +18,7 @@ import { generateUniqueId, handleSubmitForm } from "@/components/Form/helpers";
 import { MyFormData } from "@/common/types/types";
 
 const Form = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const uploadRef = useRef<HTMLInputElement>(null);
