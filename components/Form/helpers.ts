@@ -6,7 +6,8 @@ function generateUniqueId(prefix: string, suffix: string) {
   return `${prefix || ""}${randomNum}${suffix || ""}`;
 }
 
-const handleSubmitForm = async (data: MyFormData, uniqueId: string) => {
+const
+    handleSubmitForm = async (data: MyFormData, uniqueId: string) => {
   if (typeof (window as WindowTg)?.Telegram !== "undefined") {
     try {
       const { photos, ...newData } = data;

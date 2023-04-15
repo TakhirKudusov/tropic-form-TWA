@@ -48,7 +48,7 @@ const UploadButton = forwardRef(
         <input
           ref={ref}
           type="file"
-          accept=".jpg, .jpeg, .png, .heic, .heif"
+          accept="image/*"
           id="upload_btn"
           hidden
           name={name}
