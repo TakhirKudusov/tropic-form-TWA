@@ -17,6 +17,7 @@
     "@next/font": "13.1.5",
     "@reduxjs/toolkit": "^1.9.1",
     "@styled-icons/boxicons-regular": "^10.47.0",
+    "@styled-icons/evil": "^10.46.0",
     "@styled-icons/fluentui-system-filled": "^10.47.0",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",

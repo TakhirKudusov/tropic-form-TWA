@@ -25,6 +25,9 @@ dependencies:
   '@styled-icons/boxicons-regular':
     specifier: ^10.47.0
     version: 10.47.0(react@18.2.0)(styled-components@5.3.6)
+  '@styled-icons/evil':
+    specifier: ^10.46.0
+    version: 10.46.0(react@18.2.0)(styled-components@5.3.6)
   '@styled-icons/fluentui-system-filled':
     specifier: ^10.47.0
     version: 10.47.0(react@18.2.0)(styled-components@5.3.6)
@@ -416,6 +419,18 @@ packages:
 
   /@styled-icons/boxicons-regular@10.47.0(react@18.2.0)(styled-components@5.3.6):
     resolution: {integrity: sha512-z8KczDp4VArXvOn8i2j66Xs4oX9oiiJEhMoHydY3uC9kdtImcxhZ/xHPrgTJLkbK6f5ikwB4CKVnSqQGzzAJNw==}
+    peerDependencies:
+      react: '*'
+      styled-components: '*'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@styled-icons/styled-icon': 10.7.0(react@18.2.0)(styled-components@5.3.6)
+      react: 18.2.0
+      styled-components: 5.3.6(react-dom@18.2.0)(react-is@16.13.1)(react@18.2.0)
+    dev: false
+
+  /@styled-icons/evil@10.46.0(react@18.2.0)(styled-components@5.3.6):
+    resolution: {integrity: sha512-r1g2jZmz84XGLgJbAPkMDmuToUF+KyNWkS6GNoP+ygzriNgzgoHkcEvIb/bx/I2/UUHeotRMOknvhvh5C2CwFg==}
     peerDependencies:
       react: '*'
       styled-components: '*'

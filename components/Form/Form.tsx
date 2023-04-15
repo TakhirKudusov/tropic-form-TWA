@@ -38,8 +38,9 @@ const Form = () => {
       values: MyFormData,
       formikHelpers: FormikHelpers<Values>
     ): void | Promise<any> {
+      setLoading(true);
       const uniqueId = generateUniqueId("user-", "-id");
-      handleSubmitForm(values, uniqueId);
+      handleSubmitForm(values, uniqueId, setLoading);
     },
   });
 
@@ -140,7 +141,7 @@ const Form = () => {
       <PhotoCounterText>
         Добавлено фото: {formik.values.photos.length}
       </PhotoCounterText>
-      <MenuButtons />
+      <MenuButtons isLoading={loading} />
     </StyledForm>
   );
 };

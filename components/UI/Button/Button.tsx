@@ -1,12 +1,13 @@
 import { FC, memo, ReactNode } from "react";
-import styled, { css } from "styled-components";
-
+import styled, {css, keyframes} from "styled-components";
+import {Spinner3} from "@styled-icons/evil/Spinner3"
 type ButtonType = "primary" | "outlined" | "secondary";
 
 type Props = {
   btnType: ButtonType;
   children: ReactNode;
   type: "button" | "submit" | "reset";
+  isLoading?: boolean;
   disabled?: boolean;
   isRadio?: boolean;
   onClickHandler?: () => void;
@@ -19,19 +20,35 @@ const Button: FC<Props> = ({
   disabled = false,
   isRadio = false,
   onClickHandler = () => undefined,
+    isLoading
 }) => {
   return (
     <StyledBtn
       type={type}
       btnType={btnType}
-      disabled={disabled}
+      disabled={disabled || isLoading}
       isRadio={isRadio}
       onClick={onClickHandler}
     >
-      {children}
+      {isLoading ? <Spinner /> : children}
     </StyledBtn>
   );
 };
+
+const spinAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  } 
+    to {
+    transform: rotate(360deg);
+    }
+`
+
+const Spinner = styled(Spinner3)`
+  width: 24px;
+  height: 24px;
+  animation: ${spinAnimation} 1s linear infinite;
+`
 
 const StyledBtn = styled.button<{ btnType: ButtonType; isRadio: boolean }>`
   height: 40px;

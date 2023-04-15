@@ -6,12 +6,13 @@ import { FC, memo } from "react";
 
 type Props = {
   disabled?: boolean;
+  isLoading?: boolean;
 };
-const MenuButtons: FC<Props> = ({ disabled = false }) => {
+const MenuButtons: FC<Props> = ({ disabled = false , isLoading}) => {
   return (
     <Wrapper>
       <Container>
-        <Button type="submit" btnType="primary" disabled={disabled}>
+        <Button type="submit" btnType="primary" disabled={disabled} isLoading={isLoading}>
           <DoneIcon />
           Отправить
         </Button>

@@ -1,5 +1,12 @@
 import Head from "next/head";
-import Main from "@/components/Main";
+import dynamic from "next/dynamic";
+
+const Main = dynamic(
+    () => {
+        return import("@/components/Main");
+    },
+{ ssr: false }
+);
 
 const Home = () => {
   return (

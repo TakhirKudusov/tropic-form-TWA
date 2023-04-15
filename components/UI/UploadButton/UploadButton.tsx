@@ -41,6 +41,7 @@ const UploadButton = forwardRef(
 
     const handleClearImages = useCallback(() => {
       changeHandler("photos", []);
+
       if ((ref as RefObject<HTMLInputElement>)?.current) {
         (ref as RefObject<HTMLInputElement>).current!.value = "";
       }
